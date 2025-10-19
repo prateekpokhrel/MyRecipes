@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews | MyRecipes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="feather.min.js"></script>
+  <script src="scrollreveal.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo">MyRecipes</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="collection.html">Collections</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+    </div>
+    
+  </header>
+
+  <!-- Reviews Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>What Our Customers Say</h1>
+        <p>We love hearing from our foodies! Here's what they think about our dishes and delivery service.</p>
+        <a href="#add-review" class="btn-primary">Write a Review</a>
+      </div>
+      <div class="hero-image-placeholder">
+  <img src="ratings.gif" alt="recipe video" style="max-width: 300px; border-radius: 20px; border: 1cap;" />
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="container reviews" style="padding:40px 0;">
+    <h2 class="section-title">Latest Reviews</h2>
+    <div class="grid">
+      
+      <!-- Review Card -->
+      <div class="card review-card">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <img src="customer.jpg" alt="Priya Sharma" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+            <div>
+              <h3 class="card-title">Priya Sharma</h3>
+              <div class="stars" data-rating="5"></div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Absolutely loved the Butter Paneer! The delivery was quick, and the food was still warm and fresh. Will definitely order again!
+          </p>
+        </div>
+      </div>
+
+      <div class="card review-card">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <img src="customer.jpg" alt="Rohit Mehta" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+            <div>
+              <h3 class="card-title">Rohit Mehta</h3>
+              <div class="stars" data-rating="4"></div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Tried their Chicken Biryani — perfect blend of spices and tenderness. The portion size was generous too!
+          </p>
+        </div>
+      </div>
+
+      <div class="card review-card">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <img src="customer.jpg" alt="Ananya Gupta" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+            <div>
+              <h3 class="card-title">Ananya Gupta</h3>
+              <div class="stars" data-rating="5"></div>
+            </div>
+          </div>
+          <p class="card-desc">
+            The desserts are to die for! Especially the chocolate lava cake — molten perfection inside.
+          </p>
+        </div>
+      </div>
+
+      <div class="card review-card">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <img src="customer.jpg" alt="Vikash Kumar" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+            <div>
+              <h3 class="card-title">Vikash Kumar</h3>
+              <div class="stars" data-rating="4"></div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Great customer service and neat packaging. Loved the spicy momos — they hit the right spot!
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Add Review Form -->
+  <section id="add-review" class="container" style="padding:60px 0;">
+    <h2 class="section-title">Share Your Experience</h2>
+    <form id="reviewForm" style="max-width:500px;margin:auto;display:flex;flex-direction:column;gap:14px;">
+      <input type="text" placeholder="Your Name" required style="padding:10px;border-radius:8px;border:1px solid #ddd;">
+      <input type="email" placeholder="Your Email" required style="padding:10px;border-radius:8px;border:1px solid #ddd;">
+      <textarea placeholder="Write your review..." rows="4" required style="padding:10px;border-radius:8px;border:1px solid #ddd;"></textarea>
+      <div class="rating" style="display:flex;gap:6px;color:#fbbf24;">
+        <i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i>
+      </div>
+      <button type="submit" class="btn-primary" style="text-align:center;">Submit Review</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      
+      <!-- Left: Branding -->
+      <div class="footer-brand">
+        <h4 style="color: #e5483d">MyRecipes</h4>
+        <p>&copy; <span id="year"></span> MyRecipes. All rights reserved.</p>
+      </div>
+
+      <!-- Right: Links -->
+      <div class="footer-links">
+        <a>Popular</a>
+        <a>New</a>
+        <a>Vegetarian</a>
+        <a>Terms</a>
+        <a>Privacy</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+  <script src="script.js"></script>
+</body>
+</html>

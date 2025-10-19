@@ -1,0 +1,615 @@
+<!-- This is the main Recieps booklet-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipe — MyRecipes</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      margin: 0;
+      color: #333;
+    }
+
+    .site-header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #e5483d;
+      text-decoration: none;
+    }
+
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .main-nav a.active {
+      color: #e5483d;
+    }
+
+    /* Recipe Hero */
+    .recipe-hero {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+      align-items: center;
+    }
+
+    .recipe-image {
+      width: 350px;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .recipe-details h1 {
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .btn-primary {
+      background: #e5483d;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #c93b33;
+    }
+
+    /* Search bar */
+    .search-bar {
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    .search-bar input {
+      width: 60%;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    /* Ingredients & Steps */
+    .styled-list li,
+    .styled-steps li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .styled-list li.checked,
+    .styled-steps li.checked {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    /* Related Recipes */
+    .related {
+      margin-top: 40px;
+    }
+
+    .related h2 {
+      margin-bottom: 16px;
+    }
+
+    .related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .related-item {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+      transition: transform 0.2s;
+    }
+
+    .related-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .related-item img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">MyRecipes</a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="collection.html">Collections</a></li>
+          <li><a href="reviews.html">Review</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search recipes by name...">
+  </div>
+
+  <main class="container recipe-page">
+    <div id="recipe-container"></div>
+
+    <section class="related">
+      <h2>Related Recipes</h2>
+      <div id="related-list" class="related-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      
+      <!-- Left: Branding -->
+      <div class="footer-brand">
+        <h4 style="color: #e5483d">MyRecipes</h4>
+        <p>&copy; <span id="year"></span> MyRecipes. All rights reserved.</p>
+      </div>
+
+      <!-- Right: Links -->
+      <div class="footer-links">
+        <a>Popular</a>
+        <a>New</a>
+        <a>Vegetarian</a>
+        <a>Terms</a>
+        <a>Privacy</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Full recipes data
+    const recipes = {
+      "creamy-garlic-chicken": {
+        title: "Creamy Garlic Chicken",
+        category: "Dinner",
+        time: "30 min",
+        image: "cream.jpg",
+        description: "Pan-seared chicken in a rich garlic-cream sauce. Simple and comforting.",
+        ingredients: [
+          "4 chicken breasts",
+          "2 tablespoons olive oil",
+          "4 cloves garlic, minced",
+          "1 cup heavy cream",
+          "1/2 cup chicken broth",
+          "1/2 cup grated Parmesan cheese",
+          "Salt and pepper to taste",
+          "Fresh parsley for garnish"
+        ],
+        instructions: [
+          "Season chicken breasts with salt and pepper.",
+          "Heat olive oil in a skillet over medium heat.",
+          "Cook chicken until golden brown and cooked through, about 6-7 minutes per side.",
+          "Remove chicken and set aside.",
+          "In the same skillet, add garlic and cook until fragrant, about 1 minute.",
+          "Add chicken broth and heavy cream, bring to a simmer.",
+          "Stir in Parmesan cheese until sauce thickens.",
+          "Return chicken to skillet and coat with sauce.",
+          "Garnish with parsley and serve hot."
+        ]
+      },
+      "triple-chocolate-brownies": {
+        title: "Triple Chocolate Brownies",
+        category: "Dessert",
+        time: "45 min",
+        image: "chocolate.jpg",
+        description: "Fudgy brownies loaded with dark, milk, and white chocolate.",
+        ingredients: [
+          "1/2 cup (1 stick) unsalted butter",
+          "1 cup granulated sugar",
+          "2 large eggs",
+          "1 teaspoon vanilla extract",
+          "1/3 cup unsweetened cocoa powder",
+          "1/2 cup all-purpose flour",
+          "1/4 teaspoon salt",
+          "1/4 teaspoon baking powder",
+          "1/2 cup dark chocolate chips",
+          "1/2 cup milk chocolate chips",
+          "1/2 cup white chocolate chips"
+        ],
+        instructions: [
+          "Preheat the oven to 350°F (175°C). Grease or line a 9x9-inch baking pan with parchment paper.",
+          "In a microwave-safe bowl, melt the butter. Let it cool slightly.",
+          "Whisk the melted butter with sugar, eggs, and vanilla until smooth and well combined.",
+          "Sift in the cocoa powder, flour, salt, and baking powder. Stir until just mixed.",
+          "Fold in the dark, milk, and white chocolate chips.",
+          "Pour the batter into the prepared baking pan and spread evenly.",
+          "Bake for 25–30 minutes, or until a toothpick inserted into the center comes out with moist crumbs.",
+          "Cool completely in the pan before cutting into squares.",
+          "Enjoy your rich, fudgy triple chocolate brownies!"
+        ]
+      },
+      "veggie-avocado-toast": {
+        title: "Veggie Avocado Toast",
+        category: "Breakfast",
+        time: "10 min",
+        image: "toast.jpg",
+        description: "Creamy avocado, cherry tomatoes, and microgreens on sourdough.",
+        ingredients: [
+          "2 slices sourdough bread",
+          "1 ripe avocado",
+          "1/2 cup cherry tomatoes, halved",
+          "Handful of microgreens",
+          "1 tbsp olive oil",
+          "Salt and pepper to taste",
+          "Red chili flakes (optional)"
+        ],
+        instructions: [
+          "Toast the sourdough bread slices until golden brown.",
+          "Mash the avocado in a bowl with salt, pepper, and olive oil.",
+          "Spread the mashed avocado evenly on the toasted bread.",
+          "Top with halved cherry tomatoes and microgreens.",
+          "Sprinkle with red chili flakes if desired, and serve immediately."
+        ]
+      },
+      "one-pot-veggie-pasta": {
+        title: "One-Pot Veggie Pasta",
+        category: "Vegetarian",
+        time: "25 min",
+        image: "pasta.jpg",
+        description: "No-fuss pasta full of fresh vegetables and herbs.",
+        ingredients: [
+          "8 oz pasta (penne or fusilli)",
+          "2 cups vegetable broth",
+          "1 cup cherry tomatoes, halved",
+          "1 zucchini, sliced",
+          "1 bell pepper, chopped",
+          "1/2 onion, chopped",
+          "3 cloves garlic, minced",
+          "2 tbsp olive oil",
+          "1 tsp dried oregano",
+          "Salt and pepper to taste",
+          "Fresh basil for garnish"
+        ],
+        instructions: [
+          "In a large pot, heat olive oil over medium heat.",
+          "Add onion and garlic, sauté until fragrant and translucent.",
+          "Add bell pepper, zucchini, cherry tomatoes, and oregano; cook for 3-4 minutes.",
+          "Add pasta and vegetable broth; bring to a boil.",
+          "Reduce heat and simmer, stirring occasionally, until pasta is cooked and liquid is absorbed (about 10-12 minutes).",
+          "Season with salt and pepper.",
+          "Garnish with fresh basil and serve hot."
+        ]
+      },
+      "spicy-shrimp-tacos": {
+        title: "Spicy Shrimp Tacos",
+        category: "Dinner",
+        time: "20 min",
+        image: "tacos.jpg",
+        description: "Zesty shrimp with fresh slaw wrapped in soft tortillas.",
+        ingredients: [
+          "1 lb shrimp, peeled and deveined",
+          "1 tbsp olive oil",
+          "1 tsp chili powder",
+          "1/2 tsp cumin",
+          "1/4 tsp cayenne pepper",
+          "Salt and pepper to taste",
+          "8 small tortillas",
+          "1 cup shredded cabbage",
+          "1/4 cup chopped cilantro",
+          "1/4 cup sour cream",
+          "1 lime, cut into wedges"
+        ],
+        instructions: [
+          "In a bowl, toss shrimp with olive oil, chili powder, cumin, cayenne, salt, and pepper.",
+          "Heat a skillet over medium-high heat and cook shrimp for 2-3 minutes per side until pink and cooked through.",
+          "Warm the tortillas in a separate pan or microwave.",
+          "Assemble tacos by placing shrimp on tortillas, topping with shredded cabbage and cilantro.",
+          "Add a dollop of sour cream and a squeeze of lime juice.",
+          "Serve immediately."
+        ]
+      },
+      "classic-caesar-salad": {
+        title: "Classic Caesar Salad",
+        category: "Vegetarian",
+        time: "15 min",
+        image: "caesar-salad.jpg",
+        description: "Crisp romaine with creamy Caesar dressing and croutons.",
+        ingredients: [
+          "1 large head romaine lettuce, chopped",
+          "1/2 cup Caesar dressing",
+          "1/2 cup croutons",
+          "1/4 cup grated Parmesan cheese",
+          "Freshly ground black pepper"
+        ],
+        instructions: [
+          "In a large bowl, toss chopped romaine lettuce with Caesar dressing until evenly coated.",
+          "Add croutons and Parmesan cheese.",
+          "Toss gently to combine.",
+          "Season with black pepper to taste and serve immediately."
+        ]
+      },
+      "fluffy-pancakes": {
+        title: "Fluffy Pancakes",
+        category: "Breakfast",
+        time: "25 min",
+        image: "fluffy-pancakes.jpg",
+        description: "Light and fluffy pancakes served with maple syrup.",
+        ingredients: [
+          "1 1/2 cups all-purpose flour",
+          "3 1/2 tsp baking powder",
+          "1 tsp salt",
+          "1 tbsp sugar",
+          "1 1/4 cups milk",
+          "1 egg",
+          "3 tbsp melted butter",
+          "Maple syrup, for serving"
+        ],
+        instructions: [
+          "In a large bowl, sift together flour, baking powder, salt, and sugar.",
+          "Make a well in the center and pour in the milk, egg, and melted butter; mix until smooth.",
+          "Heat a lightly oiled griddle or frying pan over medium-high heat.",
+          "Pour 1/4 cup batter for each pancake onto the griddle.",
+          "Cook until bubbles form and edges are dry, then flip and cook until browned on the other side.",
+          "Serve warm with maple syrup."
+        ]
+      },
+      "hearty-beef-stew": {
+        title: "Hearty Beef Stew",
+        category: "Dinner",
+        time: "90 min",
+        image: "beaf.jpg",
+        description: "Slow-cooked beef with potatoes and carrots in rich gravy.",
+        ingredients: [
+          "2 lbs beef chuck, cut into cubes",
+          "2 tbsp vegetable oil",
+          "1 onion, chopped",
+          "3 cloves garlic, minced",
+          "4 cups beef broth",
+          "3 carrots, sliced",
+          "4 potatoes, diced",
+          "2 tbsp tomato paste",
+          "1 tsp dried thyme",
+          "Salt and pepper to taste"
+        ],
+        instructions: [
+          "Heat oil in a large pot over medium-high heat.",
+          "Brown beef cubes on all sides and remove from pot.",
+          "In the same pot, sauté onion and garlic until translucent.",
+          "Add tomato paste and cook 1 minute.",
+          "Return beef to pot and add beef broth, thyme, salt, and pepper.",
+          "Bring to a boil, reduce heat, cover, and simmer for 1 hour.",
+          "Add carrots and potatoes, cover, and cook another 30 minutes until vegetables are tender.",
+          "Adjust seasoning and serve hot."
+        ]
+      },
+      "vegan-buddha-bowl": {
+        title: "Vegan Buddha Bowl",
+        category: "Vegetarian",
+        time: "35 min",
+        image: "vegen.jpg",
+        description: "Colorful veggies, quinoa, chickpeas, and tahini dressing.",
+        ingredients: [
+          "1 cup cooked quinoa",
+          "1 cup roasted chickpeas",
+          "1/2 cup shredded carrots",
+          "1/2 cup sliced cucumber",
+          "1/2 avocado, sliced",
+          "1/4 cup hummus",
+          "2 tbsp tahini",
+          "1 tbsp lemon juice",
+          "Salt and pepper to taste"
+        ],
+        instructions: [
+          "In a bowl, arrange cooked quinoa as the base.",
+          "Top with roasted chickpeas, shredded carrots, cucumber slices, and avocado.",
+          "Mix tahini with lemon juice, salt, and pepper to make the dressing.",
+          "Drizzle the tahini dressing over the bowl.",
+          "Add a dollop of hummus on the side and serve."
+        ]
+      },
+      "blueberry-muffins": {
+        title: "Blueberry Muffins",
+        category: "Dessert",
+        time: "40 min",
+        image: "muffinblue.jpg",
+        description: "Sweet and moist muffins bursting with fresh blueberries.",
+        ingredients: [
+          "1 1/2 cups all-purpose flour",
+          "3/4 cup sugar",
+          "1/2 tsp salt",
+          "2 tsp baking powder",
+          "1/3 cup vegetable oil",
+          "1 large egg",
+          "1/3 to 1/2 cup milk",
+          "1 tsp vanilla extract",
+          "1 cup fresh blueberries"
+        ],
+        instructions: [
+          "Preheat oven to 400°F (200°C). Grease a muffin tin or line with paper liners.",
+          "In a bowl, mix flour, sugar, salt, and baking powder.",
+          "In another bowl, whisk oil, egg, milk, and vanilla extract.",
+          "Combine wet and dry ingredients until just mixed.",
+          "Fold in blueberries gently.",
+          "Spoon batter into muffin cups, filling about 2/3 full.",
+          "Bake for 20-25 minutes until a toothpick comes out clean.",
+          "Cool on a wire rack before serving."
+        ]
+      },
+      "caprese-salad": {
+        title: "Caprese Salad",
+        category: "Vegetarian",
+        time: "10 min",
+        image: "salad.jpeg",
+        description: "Fresh tomatoes, mozzarella, basil, and balsamic glaze.",
+        ingredients: [
+          "3 ripe tomatoes, sliced",
+          "8 oz fresh mozzarella, sliced",
+          "Fresh basil leaves",
+          "2 tbsp balsamic glaze",
+          "2 tbsp olive oil",
+          "Salt and pepper to taste"
+        ],
+        instructions: [
+          "On a serving plate, alternate slices of tomato and mozzarella.",
+          "Tuck fresh basil leaves between the slices.",
+          "Drizzle with olive oil and balsamic glaze.",
+          "Season with salt and pepper.",
+          "Serve immediately."
+        ]
+      },
+      "chicken-stir-fry": {
+        title: "Chicken Stir Fry",
+        category: "Dinner",
+        time: "25 min",
+        image: "chicken-stir-fry.jpg",
+        description: "Tender chicken with mixed vegetables in savory sauce.",
+        ingredients: [
+          "1 lb chicken breast, thinly sliced",
+          "2 tbsp vegetable oil",
+          "1 bell pepper, sliced",
+          "1 cup broccoli florets",
+          "1 carrot, julienned",
+          "3 cloves garlic, minced",
+          "1/4 cup soy sauce",
+          "1 tbsp honey",
+          "1 tsp grated ginger",
+          "Cooked rice, to serve"
+        ],
+        instructions: [
+          "Heat oil in a large skillet or wok over medium-high heat.",
+          "Add garlic and ginger, sauté for 30 seconds.",
+          "Add chicken slices and cook until no longer pink.",
+          "Add bell pepper, broccoli, and carrot; stir-fry for 5-6 minutes.",
+          "Mix soy sauce and honey, pour over the chicken and veggies.",
+          "Cook for another 2 minutes, stirring constantly.",
+          "Serve hot over cooked rice."
+        ]
+      }
+    };
+
+    // Get query param
+    function getQueryParam(param) {
+      return new URLSearchParams(window.location.search).get(param);
+    }
+
+    // Display recipe
+    function displayRecipe() {
+      const recipeId = getQueryParam("recipe") || "creamy-garlic-chicken";
+      const container = document.getElementById("recipe-container");
+      const r = recipes[recipeId];
+
+      if (!r) return container.innerHTML = "<p>Recipe not found.</p>";
+
+      container.innerHTML = `
+        <section class="recipe-hero">
+          <img src="${r.image}" class="recipe-image" alt="${r.title}">
+          <div class="recipe-details">
+            <h1>${r.title}</h1>
+            <p class="recipe-meta">${r.category} • ${r.time}</p>
+            <button class="btn-primary">♡ Save Recipe</button>
+          </div>
+        </section>
+        <section class="recipe-content">
+          <div class="recipe-section">
+            <h2>Ingredients</h2>
+            <ul class="styled-list">
+              ${r.ingredients.map(i => `<li>${i}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="recipe-section">
+            <h2>Instructions</h2>
+            <ol class="styled-steps">
+              ${r.instructions.map(i => `<li>${i}</li>`).join('')}
+            </ol>
+          </div>
+        </section>
+      `;
+
+      makeListInteractive();
+      displayRelatedRecipes(recipeId);
+    }
+
+    // Clickable list items
+    function makeListInteractive() {
+      document.querySelectorAll(".styled-list li, .styled-steps li").forEach(li => {
+        li.addEventListener("click", () => li.classList.toggle("checked"));
+      });
+    }
+
+    // Related recipes
+    function displayRelatedRecipes(currentId) {
+      const relatedList = document.getElementById("related-list");
+      const related = Object.keys(recipes).filter(id => id !== currentId).slice(0, 3);
+      relatedList.innerHTML = related.map(id => {
+        const r = recipes[id];
+        return `
+          <a href="recipe.html?recipe=${id}" class="related-item">
+            <img src="${r.image}" alt="${r.title}">
+            <span>${r.title}</span>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Search filter
+    document.getElementById("searchInput").addEventListener("input", function() {
+      const query = this.value.toLowerCase();
+      const result = Object.keys(recipes).find(id => recipes[id].title.toLowerCase().includes(query));
+      if (result) {
+        window.history.pushState({}, '', `?recipe=${result}`);
+        displayRecipe();
+      }
+    });
+
+    displayRecipe();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MyRecipes — Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="icon/png" href="website icon.png" />
+  
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open menu">☰</button>
+        <a href="#" class="logo">MyRecipes</a>
+      </div>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="collection.html">Collections</a></li>
+          <li><a href="reviews.html">Review</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <form id="search-form" class="search-form" role="search">
+  <input 
+    id="search-input" 
+    type="search" 
+    placeholder="Find a recipe or ingredient" 
+    aria-label="Search recipes"
+  >
+  <button type="submit" class="search-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 24 24">
+      <path d="M21.71 20.29l-3.4-3.39A8.94 8.94 0 0019 11a9 9 0 10-9 9 8.94 8.94 0 005.9-2.69l3.39 3.4a1 1 0 001.42-1.42zM4 11a7 7 0 1114 0 7 7 0 01-14 0z"/>
+    </svg>
+  </button>
+</form>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Delicious recipes for every day</h1>
+          <p>Find quick dinners, comfort food, and festive dishes with step-by-step instructions.</p>
+          <a href="#" class="btn-primary">Browse Popular Recipes</a>
+        </div>
+       <div class="hero-image-placeholder">
+  <img src="recipes.gif" alt="recipe video" style="max-width: 450px; border-radius: 20px; border: 1cap;" />
+</div>
+
+          <!-- purely decorative placeholder -->
+          <div class="plate"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters container">
+      <div class="filter-row">
+        <select id="filter-category">
+          <option value="">All categories</option>
+          <option value="dinner">Dinner</option>
+          <option value="dessert">Dessert</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="vegetarian">Vegetarian</option>
+        </select>
+
+        <select id="filter-time">
+          <option value="">Any prep time</option>
+          <option value="15">Under 15 minutes</option>
+          <option value="30">Under 30 minutes</option>
+          <option value="60">Under 60 minutes</option>
+        </select>
+
+        <button id="clear-filters" class="btn-link">Clear</button>
+      </div>
+    </section>
+
+    <section class="recipes container" id="recipes-section">
+      <h2 class="section-title">Recipes Details</h2>
+
+     <div id="recipes-grid" class="grid">
+  <!-- Recipe cards inserted here by HTML for demo; JS also able to render/from dataset -->
+  <article class="card" data-title="Creamy Garlic Chicken" data-category="dinner" data-time="30">
+    <div class="card-media">
+      <img src="cream.jpg" alt="Creamy Garlic Chicken" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Creamy Garlic Chicken</h3>
+      <p class="card-meta">Dinner • 30 min</p>
+      <p class="card-desc">Pan-seared chicken in a rich garlic-cream sauce. Simple and comforting.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=creamy-garlic-chicken'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Triple Chocolate Brownies" data-category="dessert" data-time="45">
+    <div class="card-media">
+      <img src="chocolate.jpg" alt="Triple Chocolate Brownies" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Triple Chocolate Brownies</h3>
+      <p class="card-meta">Dessert • 45 min</p>
+      <p class="card-desc">Fudgy brownies loaded with dark, milk, and white chocolate.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=triple-chocolate-brownies'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Veggie Avocado Toast" data-category="breakfast" data-time="10">
+    <div class="card-media">
+      <img src="toast.jpg" alt="Veggie Avocado Toast" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Veggie Avocado Toast</h3>
+      <p class="card-meta">Breakfast • 10 min</p>
+      <p class="card-desc">Creamy avocado, cherry tomatoes, and microgreens on sourdough.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=veggie-avocado-toast'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="One-Pot Veggie Pasta" data-category="vegetarian" data-time="25">
+    <div class="card-media">
+      <img src="pasta.jpg" alt="One-Pot Veggie Pasta" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">One-Pot Veggie Pasta</h3>
+      <p class="card-meta">Vegetarian • 25 min</p>
+      <p class="card-desc">No-fuss pasta full of fresh vegetables and herbs.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=one-pot-veggie-pasta'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Spicy Shrimp Tacos" data-category="dinner" data-time="20">
+    <div class="card-media">
+      <img src="tacos.jpg" alt="Spicy Shrimp Tacos" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Spicy Shrimp Tacos</h3>
+      <p class="card-meta">Dinner • 20 min</p>
+      <p class="card-desc">Zesty shrimp with fresh slaw wrapped in soft tortillas.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=spicy-shrimp-tacos'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Classic Caesar Salad" data-category="vegetarian" data-time="15">
+    <div class="card-media">
+      <img src="caesar-salad.jpg" alt="Classic Caesar Salad" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Classic Caesar Salad</h3>
+      <p class="card-meta">Vegetarian • 15 min</p>
+      <p class="card-desc">Crisp romaine with creamy Caesar dressing and croutons.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=classic-caesar-salad'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Fluffy Pancakes" data-category="breakfast" data-time="25">
+    <div class="card-media">
+      <img src="Fluffy-pancakes.jpg" alt="Fluffy Pancakes" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Fluffy Pancakes</h3>
+      <p class="card-meta">Breakfast • 25 min</p>
+      <p class="card-desc">Light and fluffy pancakes served with maple syrup.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=fluffy-pancakes'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Hearty Beef Stew" data-category="dinner" data-time="90">
+    <div class="card-media">
+      <img src="beaf.jpg" alt="Hearty Beef Stew" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Hearty Beef Stew</h3>
+      <p class="card-meta">Dinner • 90 min</p>
+      <p class="card-desc">Slow-cooked beef with potatoes and carrots in rich gravy.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=hearty-beef-stew'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Vegan Buddha Bowl" data-category="vegetarian" data-time="35">
+    <div class="card-media">
+      <img src="vegen.jpg" alt="Vegan Buddha Bowl" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Vegan Buddha Bowl</h3>
+      <p class="card-meta">Vegetarian • 35 min</p>
+      <p class="card-desc">Colorful veggies, quinoa, chickpeas, and tahini dressing.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=vegan-buddha-bowl'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Blueberry Muffins" data-category="dessert" data-time="40">
+    <div class="card-media">
+      <img src="muffinblue.jpg" alt="Blueberry Muffins" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Blueberry Muffins</h3>
+      <p class="card-meta">Dessert • 40 min</p>
+      <p class="card-desc">Sweet and moist muffins bursting with fresh blueberries.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=blueberry-muffins'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Caprese Salad" data-category="vegetarian" data-time="10">
+    <div class="card-media">
+      <img src="salad.jpeg" alt="Caprese Salad" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Caprese Salad</h3>
+      <p class="card-meta">Vegetarian • 10 min</p>
+      <p class="card-desc">Fresh tomatoes, mozzarella, basil, and balsamic glaze.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=caprese-salad'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" data-title="Chicken Stir Fry" data-category="dinner" data-time="25">
+    <div class="card-media">
+      <img src="chicken-stir-fry.jpg" alt="Chicken Stir Fry" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Chicken Stir Fry</h3>
+      <p class="card-meta">Dinner • 25 min</p>
+      <p class="card-desc">Tender chicken with mixed vegetables in savory sauce.</p>
+      <div class="card-actions">
+        <button class="btn-sm" onclick="location.href='recipe.html?recipe=chicken-stir-fry'">View Recipe</button>
+        <button class="btn-icon" aria-label="Save">♡</button>
+      </div>
+    </div>
+  </article>
+
+  <!-- add more cards as needed for future use -->
+</div>
+
+
+      <div class="pagination">
+  <button id="prev-page" class="btn-pag" disabled>« Prev</button>
+  <span id="page-info">Page 1 of 5</span>
+  <button id="next-page" class="btn-pag">Next »</button>
+</div>
+
+<!-- Link your external JS file below -->
+
+
+    </section>
+  </main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      
+      <!-- Left: Branding -->
+      <div class="footer-brand">
+        <h4 style="color: #e5483d">MyRecipes</h4>
+        <p>&copy; <span id="year"></span> MyRecipes. All rights reserved.</p>
+      </div>
+
+      <!-- Right: Links -->
+      <div class="footer-links">
+        <a>Popular</a>
+        <a>New</a>
+        <a>Vegetarian</a>
+        <a>Terms</a>
+        <a>Privacy</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  <script src="script.js" defer></script>
+</body>
+</html>
